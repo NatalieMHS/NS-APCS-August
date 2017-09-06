@@ -62,8 +62,24 @@ public class Calculate {
 		return a + varName + "^2 + " + b + varName + " + " + c;
 	}
 	
-	public static boolean isDivisibleBy() {
-		return true;
+	public static boolean isDivisibleBy(int dividend, int divisor) {
+		return dividend % divisor == 0;
+	}
+	
+	public static double absValue(double operand) {
+		if (operand < 0) {
+			return -operand;
+		} else {
+			return operand;
+		}
+	}
+	
+	public static double max(double num1, double num2) {
+		if (num1 > num2) {
+			return num1;
+		} else {
+			return num2;
+		}
 	}
 }
 
