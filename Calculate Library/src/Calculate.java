@@ -54,18 +54,22 @@ public class Calculate {
 		return mixed + " " + newNumerator + "/" + denominator;
 	}
 	
-	//
-	public static String foil(int num1, int num2, int num3, int num4, String varName) {
-		int a = num1 * num3;
-		int b = (num1 * num4) + (num2 * num3);
-		int c = num2 * num4;
+	/* takes a binomial (ax+b)(cx+d) and foils it
+	 * returns the binomial in the form ax^2 + bx + c
+	 */
+	public static String foil(int binomialA, int binomialB, int binomialC, int binomialD, String varName) {
+		int a = binomialA * binomialC;
+		int b = (binomialA * binomialD) + (binomialB * binomialC);
+		int c = binomialB * binomialD;
 		return a + varName + "^2 + " + b + varName + " + " + c;
 	}
 	
+	// determines if the dividend can be equally divided by the divisor
 	public static boolean isDivisibleBy(int dividend, int divisor) {
 		return dividend % divisor == 0;
 	}
 	
+	// takes a number and returns the absolute value
 	public static double absValue(double operand) {
 		if (operand < 0) {
 			return -operand;
@@ -74,11 +78,49 @@ public class Calculate {
 		}
 	}
 	
+	// takes two numbers and returns the largest of the two
 	public static double max(double num1, double num2) {
 		if (num1 > num2) {
 			return num1;
 		} else {
 			return num2;
+		}
+	}
+	
+	// takes three numbers and returns the largest of the three
+	public static double max(double num1, double num2, double num3) {
+		if (num1 >= num2 && num1 >= num3) {
+			return num1;
+		} else if (num2 >= num3 && num2 >= num1) {
+			return num2;
+		} else if (num3 >= num1 && num3 >= num1) {
+			return num3;
+		} else {
+			return num1;
+		}
+	}
+	
+	// takes two integers and returns the smallest one
+	public static int min(int num1, int num2) {
+		if (num1 < num2) {
+			return num1;
+		} else {
+			return num2;
+		}
+	}
+	
+	// incomplete - rounds a number to two decimal places
+	public static double round2(double num) {
+		String numTxt = Double.toString(num);
+		char thirdDecPlace = numTxt.charAt(4);
+		System.out.println((double) thirdDecPlace);
+		System.out.println(thirdDecPlace);
+		if ((double) thirdDecPlace >= 5) {
+			System.out.println(0.001 * (10 - (double) thirdDecPlace));
+			return num + (0.001 * (10 - (double) thirdDecPlace));
+		} else {
+			System.out.println(0.001 * (double) thirdDecPlace);
+			return num - (0.001 * ((double) thirdDecPlace));
 		}
 	}
 }
