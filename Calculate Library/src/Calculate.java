@@ -72,6 +72,7 @@ public class Calculate {
 		} else {
 			return operand;
 		}
+		// return (operand < 0) ? -operand : operand;
 	}
 	
 	public static double max(double num1, double num2) {
@@ -79,6 +80,25 @@ public class Calculate {
 			return num1;
 		} else {
 			return num2;
+		}
+		// return (num1 > num2) ? num1 : num2;
+	}
+	
+	public static double round2(double num) {
+		/* if decimal place is >= 5, round up; else, round down
+		 * get decimal place - cast then index? or could array
+		 * have to put it back together though
+		 * import a math library lol
+		 */
+		String numText = Double.toString(num);
+		double thirdDecPlace = numText.charAt(0);
+		System.out.println(thirdDecPlace);
+		if (thirdDecPlace >= 5) {
+			System.out.println(0.001 * (10 -thirdDecPlace));
+			return (num + (0.001 * (10 - thirdDecPlace)));
+		} else {
+			System.out.println(0.001 * (thirdDecPlace));
+			return (num - (0.001 * thirdDecPlace));
 		}
 	}
 }
