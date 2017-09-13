@@ -54,18 +54,22 @@ public class Calculate {
 		return mixed + " " + newNumerator + "/" + denominator;
 	}
 	
-	//
-	public static String foil(int num1, int num2, int num3, int num4, String varName) {
-		int a = num1 * num3;
-		int b = (num1 * num4) + (num2 * num3);
-		int c = num2 * num4;
+	/* takes a binomial (ax+b)(cx+d) and foils it
+	 * returns the binomial in the form ax^2 + bx + c
+	 */
+	public static String foil(int binomialA, int binomialB, int binomialC, int binomialD, String varName) {
+		int a = binomialA * binomialC;
+		int b = (binomialA * binomialD) + (binomialB * binomialC);
+		int c = binomialB * binomialD;
 		return a + varName + "^2 + " + b + varName + " + " + c;
 	}
 	
+	// determines if the dividend can be equally divided by the divisor
 	public static boolean isDivisibleBy(int dividend, int divisor) {
 		return dividend % divisor == 0;
 	}
 	
+	// takes a number and returns the absolute value
 	public static double absValue(double operand) {
 		if (operand < 0) {
 			return -operand;
@@ -75,6 +79,7 @@ public class Calculate {
 		// return (operand < 0) ? -operand : operand;
 	}
 	
+	// takes two numbers and returns the largest of the two
 	public static double max(double num1, double num2) {
 		if (num1 > num2) {
 			return num1;
@@ -83,23 +88,43 @@ public class Calculate {
 		}
 		// return (num1 > num2) ? num1 : num2;
 	}
-	
-	public static double round2(double num) {
-		/* if decimal place is >= 5, round up; else, round down
-		 * get decimal place - cast then index? or could array
-		 * have to put it back together though
-		 * import a math library lol
-		 */
-		String numText = Double.toString(num);
-		double thirdDecPlace = numText.charAt(0);
-		System.out.println(thirdDecPlace);
-		if (thirdDecPlace >= 5) {
-			System.out.println(0.001 * (10 -thirdDecPlace));
-			return (num + (0.001 * (10 - thirdDecPlace)));
+
+	// takes three numbers and returns the largest of the three
+	public static double max(double num1, double num2, double num3) {
+		if (num1 >= num2 && num1 >= num3) {
+			return num1;
+		} else if (num2 >= num3 && num2 >= num1) {
+			return num2;
+		} else if (num3 >= num1 && num3 >= num1) {
+			return num3;
 		} else {
-			System.out.println(0.001 * (thirdDecPlace));
-			return (num - (0.001 * thirdDecPlace));
+			return num1;
 		}
+	}
+	
+	// takes two integers and returns the smallest one
+	public static int min(int num1, int num2) {
+		if (num1 < num2) {
+			return num1;
+		} else {
+			return num2;
+		}
+	}
+	
+	// rounds a number to two decimal places
+	public static double round2(double num) {
+		/*String numTxt = Double.toString(num); // converts the double to a string
+		   I had to search in the java documentation to find this method. It takes
+		   2 parameters (the number to convert and the number base) and returns the number at this
+		   value. I wanted to find the 3rd decimal place and use base 10 (decimal).
+		double thirdDecPlace = Character.digit(numTxt.charAt(4), 10);
+		if (thirdDecPlace >= 5) {
+			return (num + 0.001 * (10 - thirdDecPlace);
+		} else {
+			return num - thirdDecPlace;
+		}*/
+		// uses the Math method round, which rounds the parameter to the nearest integer
+		return Math.round(num * 100) / 100.0;
 	}
 }
 
