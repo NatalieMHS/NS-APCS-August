@@ -21,6 +21,11 @@ public class DoMath {
 		System.out.println(Calculate.isDivisibleBy(6, 3));
 		System.out.println(Calculate.round2(2.115));
 		System.out.println(Calculate.max(100, 100, 14));
+		System.out.println(Calculate.exponent(3, 4));
+		System.out.println(Calculate.round2(3.114));
+		System.out.println(Calculate.round2(3.116));
+		//System.out.println(Calculate.);
+		System.out.println(Calculate.isPrime(14));
 	}
 
 }

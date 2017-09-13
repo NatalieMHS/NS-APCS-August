@@ -113,18 +113,53 @@ public class Calculate {
 	
 	// rounds a number to two decimal places
 	public static double round2(double num) {
-		/*String numTxt = Double.toString(num); // converts the double to a string
-		   I had to search in the java documentation to find this method. It takes
-		   2 parameters (the number to convert and the number base) and returns the number at this
-		   value. I wanted to find the 3rd decimal place and use base 10 (decimal).
-		double thirdDecPlace = Character.digit(numTxt.charAt(4), 10);
-		if (thirdDecPlace >= 5) {
-			return (num + 0.001 * (10 - thirdDecPlace);
+		int noDecimalsNum = (int) num * 100;
+		int thousandDigit = noDecimalsNum % 10;
+		System.out.println(thousandDigit);
+		if (thousandDigit >= 5) {
+			return num + 0.001 * (10 - thousandDigit);
 		} else {
-			return num - thirdDecPlace;
-		}*/
+			return num - 0.001 * thousandDigit;
+		}
+		
 		// uses the Math method round, which rounds the parameter to the nearest integer
-		return Math.round(num * 100) / 100.0;
+		// return Math.round(num * 100) / 100.0;
 	}
+	
+	// takes a base and an exponent power and calculates the exponent's value
+	public static double exponent(double base, int power) {
+		double operand = base;
+		for(int i = 0; i < power - 1; i++) {
+			operand *= base;
+		}
+		return operand;
+	}
+	
+	// evalulates the factorial of an integer
+	public static int factorial(int operand) {
+		int factorialValue = 1;
+		for (int i = 0; i < operand; i++) {
+			factorialValue *= i + 1;
+		}
+		return factorialValue;
+	}
+	
+	// evaluates whether a number is a prime number
+	public static boolean isPrime(int num) {
+		boolean prime = false;
+		for (int i = 2; i < num; i++) {
+			if (isDivisibleBy(num, i)) {
+				prime = true;
+			}
+		}
+		return prime;
+	}
+	
+	/*public static int gcf(int num1, int num2) {
+		
+	}*/
+
+	
+	
 }
 
