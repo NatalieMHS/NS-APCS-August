@@ -113,13 +113,13 @@ public class Calculate {
 	
 	// rounds a number to two decimal places
 	public static double round2(double num) {
-		int noDecimalsNum = (int) num * 100;
-		int thousandDigit = noDecimalsNum % 10;
-		System.out.println(thousandDigit);
+		double noDecimalsNum = num * 1000;
+		int thousandDigit = (int) noDecimalsNum % 10;
+		noDecimalsNum = (int) noDecimalsNum;
 		if (thousandDigit >= 5) {
-			return num + 0.001 * (10 - thousandDigit);
+			return (noDecimalsNum / 1000) + 0.001;
 		} else {
-			return num - 0.001 * thousandDigit;
+			return noDecimalsNum / 1000;
 		}
 		
 		// uses the Math method round, which rounds the parameter to the nearest integer
@@ -155,11 +155,23 @@ public class Calculate {
 		return prime;
 	}
 	
-	/*public static int gcf(int num1, int num2) {
-		
-	}*/
-
+	// evaluates the greatest common factor of two numbers
+	public static int gcf(int num1, int num2) {
+		int gcf = 1;
+		for (int i = 1; i <= min(num1, num2); i++) {
+			if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
+				if (gcf < i) {
+					gcf = i;
+				}
+			}
+		}
+		return gcf;
+	}	
 	
+	public static double sqrt(double operand) {
+		
+		return operand;
+	}
 	
 }
 
