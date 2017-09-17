@@ -165,9 +165,14 @@ public class Calculate {
 		return gcf;
 	}	
 	
-	public static double sqrt(double operand) {
-		
-		return operand;
+	public static double sqrt(double num) {
+		double guess = 0.01;
+		double guessSqrt = 0;
+		while (guessSqrt * guessSqrt != round2(num)) {
+			guessSqrt = 0.5 *(num / guess + guess);
+			guess += 0.01;
+		}
+		return round2(guess - 0.01);
 	}
 	
 }
