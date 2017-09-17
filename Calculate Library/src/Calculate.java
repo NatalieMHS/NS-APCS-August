@@ -3,7 +3,6 @@
  * Self-written Math library 
  * Contains a series of methods to do basic math functions */
 
-
 public class Calculate {
 	
 	// squares the input
@@ -113,17 +112,15 @@ public class Calculate {
 	
 	// rounds a number to two decimal places
 	public static double round2(double num) {
-		double noDecimalsNum = num * 1000;
-		int thousandDigit = (int) noDecimalsNum % 10;
-		noDecimalsNum = (int) noDecimalsNum;
-		if (thousandDigit >= 5) {
-			return (noDecimalsNum / 1000) + 0.001;
+		double roundedNum = num * 1000;
+		int hundredthDigit = (int) roundedNum % 10;
+		roundedNum = (int) roundedNum / 10;
+		roundedNum /= 100.0;
+		if (hundredthDigit >= 5) {
+			return roundedNum + 0.01;
 		} else {
-			return noDecimalsNum / 1000;
+			return roundedNum;
 		}
-		
-		// uses the Math method round, which rounds the parameter to the nearest integer
-		// return Math.round(num * 100) / 100.0;
 	}
 	
 	// takes a base and an exponent power and calculates the exponent's value
