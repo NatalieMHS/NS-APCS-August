@@ -76,7 +76,6 @@ public class Calculate {
 		} else {
 			return operand;
 		}
-		// return (operand < 0) ? -operand : operand;
 	}
 	
 	// takes two numbers and returns the largest of the two
@@ -86,7 +85,6 @@ public class Calculate {
 		} else {
 			return num2;
 		}
-		// return (num1 > num2) ? num1 : num2;
 	}
 
 	// takes three numbers and returns the largest of the three
@@ -111,15 +109,16 @@ public class Calculate {
 		}
 	}
 	
-	// rounds a number to two decimal places
+	// rounds a number to two decimal places FIX THIS LATER
 	public static double round2(double num) {
-		double noDecimalsNum = num * 1000;
-		int thousandDigit = (int) noDecimalsNum % 10;
+		double noDecimalsNum = num * 100;
+		int thousandthDigit = (int) noDecimalsNum % 10;
+		System.out.println(thousandthDigit);
 		noDecimalsNum = (int) noDecimalsNum;
-		if (thousandDigit >= 5) {
-			return (noDecimalsNum / 1000) + 0.001;
+		if (thousandthDigit >= 5) {
+			return (noDecimalsNum / 100) + 0.01;
 		} else {
-			return noDecimalsNum / 1000;
+			return noDecimalsNum / 100;
 		}
 		
 		// uses the Math method round, which rounds the parameter to the nearest integer
@@ -169,6 +168,7 @@ public class Calculate {
 	}	
 	
 	public static double sqrt(double operand) {
+		//sqrt N = ½(N/A + A)
 		
 		return operand;
 	}
