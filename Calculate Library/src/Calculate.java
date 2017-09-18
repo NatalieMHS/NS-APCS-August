@@ -3,7 +3,6 @@
  * Self-written Math library 
  * Contains a series of methods to do basic math functions */
 
-
 public class Calculate {
 	
 	// squares the input
@@ -109,20 +108,18 @@ public class Calculate {
 		}
 	}
 	
-	// rounds a number to two decimal places FIX THIS LATER
+	// rounds a number to two decimal places
 	public static double round2(double num) {
-		double noDecimalsNum = num * 100;
-		int thousandthDigit = (int) noDecimalsNum % 10;
-		System.out.println(thousandthDigit);
-		noDecimalsNum = (int) noDecimalsNum;
-		if (thousandthDigit >= 5) {
-			return (noDecimalsNum / 100) + 0.01;
-		} else {
-			return noDecimalsNum / 100;
+		int noDecimalsNum = (int) (num * 1000); // removes decimals beyond the thousandths place
+		int thousandthDigit = noDecimalsNum % 10;
+		noDecimalsNum /= 10;
+		// increments if number is positive, decrements if number is negative
+		if (thousandthDigit >= 5 && noDecimalsNum > 0) {
+			noDecimalsNum += 1;
+		} else if (thousandthDigit <= -5 && noDecimalsNum < 0) {
+			noDecimalsNum -= 1;
 		}
-		
-		// uses the Math method round, which rounds the parameter to the nearest integer
-		// return Math.round(num * 100) / 100.0;
+		return noDecimalsNum / 100.0; // returns the rounded value and makes it a double
 	}
 	
 	// takes a base and an exponent power and calculates the exponent's value
@@ -165,12 +162,17 @@ public class Calculate {
 			}
 		}
 		return gcf;
-	}	
+	}	 
 	
-	public static double sqrt(double operand) {
-		//sqrt N = ½(N/A + A)
-		
-		return operand;
+	public static double sqrt(double num) {
+		double guess = 0.1;
+		double guessSqrt = 0;
+		while (round2(guessSqrt * guessSqrt) != num) {
+			guessSqrt = 0.5 *(num / guess + guess);
+			System.out.println(guessSqrt);
+			guess += 0.1;
+		}
+		return round2(guess - 0.1);
 	}
 	
 }
