@@ -3,6 +3,7 @@
  * Self-written Math library 
  * Contains a series of methods to do basic math functions */
 
+
 public class Calculate {
 	
 	// squares the input
@@ -75,7 +76,6 @@ public class Calculate {
 		} else {
 			return operand;
 		}
-		// return (operand < 0) ? -operand : operand;
 	}
 	
 	// takes two numbers and returns the largest of the two
@@ -85,7 +85,6 @@ public class Calculate {
 		} else {
 			return num2;
 		}
-		// return (num1 > num2) ? num1 : num2;
 	}
 
 	// takes three numbers and returns the largest of the three
@@ -112,15 +111,16 @@ public class Calculate {
 	
 	// rounds a number to two decimal places
 	public static double round2(double num) {
-		double roundedNum = num * 1000;
-		int hundredthDigit = (int) roundedNum % 10;
-		roundedNum = (int) roundedNum / 10;
-		roundedNum /= 100.0;
-		if (hundredthDigit >= 5) {
-			return roundedNum + 0.01;
-		} else {
-			return roundedNum;
+		int noDecimalsNum = (int) (num * 1000); // removes decimals beyond the thousandths place
+		int thousandthDigit = noDecimalsNum % 10;
+		noDecimalsNum /= 10;
+		// increments if number is positive, decrements if number is negative
+		if (thousandthDigit >= 5 && noDecimalsNum > 0) {
+			noDecimalsNum += 1;
+		} else if (thousandthDigit <= -5 && noDecimalsNum < 0) {
+			noDecimalsNum -= 1;
 		}
+		return noDecimalsNum / 100.0; // returns the rounded value and makes it a double
 	}
 	
 	// takes a base and an exponent power and calculates the exponent's value
@@ -163,18 +163,21 @@ public class Calculate {
 			}
 		}
 		return gcf;
-	}	
-	
-	public static double sqrt(double num) {
-		double guess = 0.01;
-		double guessSqrt = 0;
-		while (guessSqrt * guessSqrt != round2(num)) {
-			guessSqrt = 0.5 * (num / guess + guess);
-			//System.out.println(guessSqrt);
-			guess += 0.01;
-		}
-		return round2(guess - 0.01);
 	}
 	
+	public static double sqrt(double num) {
+		double guess = 0.1;
+		double guessSqrt = 0;
+		if (num < 0) {
+			throw new IllegalArgumentException("The square root of " + num + " is imaginary.");
+		}
+		//boolean correctValue = round2(guessSqrt * guessSqrt) == num;
+		while (round2(guessSqrt * guessSqrt) != num) {
+			guessSqrt = 0.5 * (num / guess + guess);
+			System.out.println(guessSqrt);
+			guess += 0.1;
+		}
+		return round2(guessSqrt);
+	}
 }
 

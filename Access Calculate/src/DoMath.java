@@ -4,6 +4,7 @@
  * Used to test the methods in Calculate
  */
 
+
 public class DoMath {
 
 	public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class DoMath {
 		System.out.println(Calculate.round2(3.117));
 		//System.out.println(Calculate.gcf(24, 27));
 		//System.out.println(Calculate.isPrime(14));
-		System.out.println(Calculate.sqrt(8));
+		System.out.println(Calculate.sqrt(-14.32));
 	}
 
 }
