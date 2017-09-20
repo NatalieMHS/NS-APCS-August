@@ -126,14 +126,26 @@ public class Calculate {
 	// takes a base and an exponent power and calculates the exponent's value
 	public static double exponent(double base, int power) {
 		double operand = base;
-		for(int i = 0; i < power - 1; i++) {
-			operand *= base;
+		double result;
+		if (power < 0) {
+			throw new IllegalArgumentException("The exponent cannot be negative.");
 		}
-		return operand;
+		if (power == 0) {
+			result = base;
+		} else {
+			for(int i = 0; i < power - 1; i++) {
+				operand *= base;
+			}
+			result = operand;
+		}
+		return result;
 	}
 	
 	// evalulates the factorial of an integer
 	public static int factorial(int operand) {
+		if (operand < 0) {
+			throw new IllegalArgumentException("The value cannot be negative.");
+		}
 		int factorialValue = 1;
 		for (int i = 0; i < operand; i++) {
 			factorialValue *= i + 1;
@@ -171,10 +183,9 @@ public class Calculate {
 		if (num < 0) {
 			throw new IllegalArgumentException("The square root of " + num + " is imaginary.");
 		}
-		//boolean correctValue = round2(guessSqrt * guessSqrt) == num;
+
 		while (round2(guessSqrt * guessSqrt) != num) {
 			guessSqrt = 0.5 * (num / guess + guess);
-			System.out.println(guessSqrt);
 			guess += 0.1;
 		}
 		return round2(guessSqrt);
