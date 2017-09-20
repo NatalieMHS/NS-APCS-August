@@ -155,10 +155,10 @@ public class Calculate {
 	
 	// evaluates whether a number is a prime number
 	public static boolean isPrime(int num) {
-		boolean prime = false;
+		boolean prime = true;
 		for (int i = 2; i < num; i++) {
 			if (isDivisibleBy(num, i)) {
-				prime = true;
+				prime = false;
 			}
 		}
 		return prime;
