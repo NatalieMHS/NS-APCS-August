@@ -66,6 +66,7 @@ public class Calculate {
 	
 	// determines if the dividend can be equally divided by the divisor
 	public static boolean isDivisibleBy(int dividend, int divisor) {
+		
 		return dividend % divisor == 0;
 	}
 	
@@ -189,6 +190,14 @@ public class Calculate {
 			guess += 0.1;
 		}
 		return round2(guessSqrt);
+	}
+	
+	public static String quadForm(int a, int b, int c) {
+		double posResult = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+		double negResult = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
+		System.out.println(posResult + ", " + negResult);
+		
+		return "";
 	}
 }
 

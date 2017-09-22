@@ -30,6 +30,7 @@ public class DoMath {
 		System.out.println(Calculate.isPrime(3));
 		System.out.println(Calculate.sqrt(27.0));
 		System.out.println(Calculate.sqrt(10.0));
+		System.out.println(Calculate.quadForm(1, 1, 2));
 	}
 
 }
