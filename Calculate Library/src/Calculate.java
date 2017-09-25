@@ -178,6 +178,7 @@ public class Calculate {
 		return gcf;
 	}
 	
+	// takes a number and returns its square root to two decimals
 	public static double sqrt(double num) {
 		double guess = 0.1;
 		double guessSqrt = 0;
@@ -191,6 +192,8 @@ public class Calculate {
 		return round2(guessSqrt);
 	}
 	
+	// takes the a, b, and c of a quadratic equation in the form ax^2 + bx + c
+	// and returns its roots
 	public static String quadForm(int a, int b, int c) {
 		double discr = discriminant(a, b, c);
 		if (discr < 0) {
@@ -199,9 +202,9 @@ public class Calculate {
 			double result = (-b + sqrt(discr)) / (2 * a);
 			return round2(result) + "";
 		} else {
-			double posResult = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
-			double negResult = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
-			return negResult + " and " + posResult;
+			double posResult = (-b + sqrt(discr)) / (2 * a);
+			double negResult = (-b - sqrt(discr)) / (2 * a);
+			return round2(negResult) + " and " + round2(posResult);
 		}
 	}
 }
