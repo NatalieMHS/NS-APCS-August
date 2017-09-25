@@ -184,7 +184,6 @@ public class Calculate {
 		if (num < 0) {
 			throw new IllegalArgumentException("The square root of " + num + " is imaginary.");
 		}
-
 		while (round2(guessSqrt * guessSqrt) != num) {
 			guessSqrt = 0.5 * (num / guess + guess);
 			guess += 0.1;
@@ -193,11 +192,17 @@ public class Calculate {
 	}
 	
 	public static String quadForm(int a, int b, int c) {
-		double posResult = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
-		double negResult = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
-		System.out.println(posResult + ", " + negResult);
-		
-		return "";
+		double discr = discriminant(a, b, c);
+		if (discr < 0) {
+			return "no real roots";
+		} else if (discr == 0) {
+			double result = (-b + sqrt(discr)) / (2 * a);
+			return round2(result) + "";
+		} else {
+			double posResult = (-b + sqrt(discriminant(a, b, c))) / (2 * a);
+			double negResult = (-b - sqrt(discriminant(a, b, c))) / (2 * a);
+			return negResult + " and " + posResult;
+		}
 	}
 }
 
