@@ -43,7 +43,12 @@ public class Calculate {
 	
 	// converts a mixed number into an improper fraction
 	public static String toImproperFrac(int wholeNum, int numerator, int denominator) {
-		int improper = (wholeNum * denominator) + numerator;
+		int improper = (wholeNum * denominator);
+		if (wholeNum > 0) {
+			improper += numerator;
+		} else {
+			improper -= numerator;
+		}
 		return improper + "/" + denominator;
 	}
 	
@@ -51,7 +56,7 @@ public class Calculate {
 	public static String toMixedNum(int numerator, int denominator) {
 		int mixed = numerator / denominator;
 		int newNumerator = numerator % denominator;
-		return mixed + " " + newNumerator + "/" + denominator;
+		return mixed + " " + (int) absValue(newNumerator) + "/" + (int) absValue(denominator);
 	}
 	
 	/* takes a binomial (ax+b)(cx+d) and foils it
@@ -66,7 +71,6 @@ public class Calculate {
 	
 	// determines if the dividend can be equally divided by the divisor
 	public static boolean isDivisibleBy(int dividend, int divisor) {
-		
 		return dividend % divisor == 0;
 	}
 	
@@ -157,6 +161,8 @@ public class Calculate {
 	// evaluates whether a number is a prime number
 	public static boolean isPrime(int num) {
 		boolean prime = true;
+		// doesn't test to see if the number is divisible by itself and 1,
+		// because it can still be prime even if its divisible by those numbers
 		for (int i = 2; i < num; i++) {
 			if (isDivisibleBy(num, i)) {
 				prime = false;
