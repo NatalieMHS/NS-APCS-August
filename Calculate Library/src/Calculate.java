@@ -28,12 +28,12 @@ public class Calculate {
 	
 	// converts a radian value to degrees
 	public static double toDegrees(double radian) {
-		return (radian * (360 / (2 * 3.14159)));
+		return (radian * (180 / 3.14159));
 	}
 	
 	// converts a degree value to radians
 	public static double toRadians(double degree) {
-		return (degree * ((2 * 3.14159) / 360) );
+		return (degree * (3.14159 / 180));
 	}
 	
 	// takes the a, b, and c from the equation ax^2 + bx + c and returns the discriminant
@@ -71,6 +71,7 @@ public class Calculate {
 	
 	// determines if the dividend can be equally divided by the divisor
 	public static boolean isDivisibleBy(int dividend, int divisor) {
+		
 		return dividend % divisor == 0;
 	}
 	
@@ -149,7 +150,7 @@ public class Calculate {
 	// evalulates the factorial of an integer
 	public static int factorial(int operand) {
 		if (operand < 0) {
-			throw new IllegalArgumentException("The value cannot be negative.");
+			throw new IllegalArgumentException("The value of the factorial cannot be negative.");
 		}
 		int factorialValue = 1;
 		for (int i = 0; i < operand; i++) {
