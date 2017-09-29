@@ -20,11 +20,33 @@ public class Quadratic {
 		desc += "Axis of Symmetry: " + h + "\n";
 		double k = c - (h * h); // from the equation a(x-h)^2 + k
 		desc += "Vertex: (" + h + ", " + k + ")\n";
-		
+		desc += "X-intercept(s): ";
+		String roots = quadForm(a, b, c);
+		if (roots.equals("no real roots")) {
+			desc += "None";
+		} else {
+			desc += roots;
+		}
+		desc += "Y-intercept: " + c;
 		return desc;
 	}
 	
 	public static String quadForm(int a, int b, int c) {
+		double discr = discriminant(a, b, c);
+		if (discr < 0) {
+			return "no real roots";
+		} else if (discr == 0) {
+			double result = (-b + sqrt(discr)) / (2 * a);
+			return round2(result) + "";
+		} else {
+			double posResult = (-b + sqrt(discr)) / (2 * a);
+			double negResult = (-b - sqrt(discr)) / (2 * a);
+			return round2(negResult) + " and " + round2(posResult);
+		}
+		
+	}
+	
+	public static String quadForm(double a, double b, double c) {
 		double discr = discriminant(a, b, c);
 		if (discr < 0) {
 			return "no real roots";

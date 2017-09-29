@@ -8,15 +8,20 @@ import java.util.*;
 public class QuadraticClient {
 
 	public static void main(String[] args) {
-		Scanner userInput = new Scanner(System.in);
-		System.out.println("Type in the values for the quadratic equation ax^2 + bx + c");
-		System.out.print("a: ");
-		double a = userInput.nextInt();
-		System.out.print("b: ");
-		double b = userInput.nextInt();
-		System.out.print("c: ");
-		double c = userInput.nextInt();
-		System.out.println(Quadratic.quadrDescriber(a, b, c));
+		String running = "";
+		while (running != "quit") {
+			Scanner userInput = new Scanner(System.in);
+			System.out.println("Type in the values for the quadratic equation ax^2 + bx + c");
+			System.out.print("a: ");
+			double a = userInput.nextInt();
+			System.out.print("b: ");
+			double b = userInput.nextInt();
+			System.out.print("c: ");
+			double c = userInput.nextInt();
+			System.out.println(Quadratic.quadrDescriber(a, b, c));
+			System.out.println("Would you like to continue? If not, type 'quit' to end.");
+			running = userInput.nextLine();
+		}
 	}
 
 }

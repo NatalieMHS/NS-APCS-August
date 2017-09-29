@@ -205,13 +205,12 @@ public class Calculate {
 		if (discr < 0) {
 			return "no real roots";
 		} else if (discr == 0) {
-			double result = (-b + sqrt(discr)) / (2 * a);
-			return round2(result) + "";
+			double root = (-b + sqrt(discr)) / (2 * a);
+			return round2(root) + "";
 		} else {
-			double posResult = (-b + sqrt(discr)) / (2 * a);
-			double negResult = (-b - sqrt(discr)) / (2 * a);
-			return round2(negResult) + " and " + round2(posResult);
+			double posRoot = (-b + sqrt(discr)) / (2 * a);
+			double negRoot = (-b - sqrt(discr)) / (2 * a);
+			return round2(negRoot) + " and " + round2(posRoot);
 		}
 	}
 }
-
