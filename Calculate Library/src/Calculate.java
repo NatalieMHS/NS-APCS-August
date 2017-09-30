@@ -42,8 +42,12 @@ public class Calculate {
 	}
 	
 	// converts a mixed number into an improper fraction
+	// can also handle negative mixed numbers 
 	public static String toImproperFrac(int wholeNum, int numerator, int denominator) {
 		int improper = (wholeNum * denominator);
+		if (numerator < 0 || denominator < 0) {
+			throw new IllegalArgumentException("The numerator or denominator of a mixed number cannot be negative.");
+		}
 		if (wholeNum > 0) {
 			improper += numerator;
 		} else {
@@ -53,6 +57,7 @@ public class Calculate {
 	}
 	
 	// converts an improper fraction into a mixed number
+	// can also handle negative numbers (extra credit please gotta raise my grade y'know?)
 	public static String toMixedNum(int numerator, int denominator) {
 		int mixed = numerator / denominator;
 		int newNumerator = numerator % denominator;
@@ -71,7 +76,9 @@ public class Calculate {
 	
 	// determines if the dividend can be equally divided by the divisor
 	public static boolean isDivisibleBy(int dividend, int divisor) {
-		
+		if (divisor == 0) {
+			throw new IllegalArgumentException("Error: Cannot be divided by 0.");
+		}
 		return dividend % divisor == 0;
 	}
 	
@@ -206,12 +213,12 @@ public class Calculate {
 		if (discr < 0) {
 			return "no real roots";
 		} else if (discr == 0) {
-			double result = (-b + sqrt(discr)) / (2 * a);
-			return round2(result) + "";
+			double root = (-b + sqrt(discr)) / (2 * a);
+			return round2(root) + "";
 		} else {
-			double posResult = (-b + sqrt(discr)) / (2 * a);
-			double negResult = (-b - sqrt(discr)) / (2 * a);
-			return round2(negResult) + " and " + round2(posResult);
+			double posRoot = (-b + sqrt(discr)) / (2 * a);
+			double negRoot = (-b - sqrt(discr)) / (2 * a);
+			return round2(negRoot) + " and " + round2(posRoot);
 		}
 	}
 }

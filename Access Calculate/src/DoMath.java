@@ -20,33 +20,5 @@ public class DoMath {
 		System.out.println(Calculate.discriminant(1, 4, 4));
 		System.out.println(Calculate.toMixedNum(-7, 2));
 		System.out.println(Calculate.foil(2,  3,  6,  -7,  "n"));
-		System.out.println(Calculate.isDivisibleBy(6, -3));
-		System.out.println(Calculate.round2(2.115));
-		System.out.println(Calculate.max(100, 100, 14));
-		System.out.println(Calculate.exponent(3, 0));
-		System.out.println(Calculate.round2(3.1143));
-		System.out.println(Calculate.round2(3.117));
-		System.out.println(Calculate.factorial(3));
-		System.out.println(Calculate.gcf(24, 27));
-		System.out.println(Calculate.isPrime(3));
-		System.out.println(Calculate.sqrt(27.0));
-		System.out.println(Calculate.sqrt(10.0));
-		System.out.println(Calculate.quadForm(1, 10, 10));
-		
-		System.out.println(teenSum(3, 9));
-		System.out.println(teenSum(4, 9));
-		System.out.println(teenSum(5, 12));
-		System.out.println(teenSum(5, 16));
-		
 	}
-	
-	public static int teenSum(int a, int b) {
-		int sum = a + b;
-		if (sum < 13 || sum > 19) {
-			return 2 * sum;
-		} else {
-			return sum;
-		}
-	}
-
 }
