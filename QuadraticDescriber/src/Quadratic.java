@@ -12,22 +12,22 @@ public class Quadratic {
 		String equation = a + "x^2 + " + b + "x + " + c;
 		desc += equation + "\n\n";
 		if (a >= 0) {
-			desc += "Opens: up\n";
+			desc += "Opens: Up\n";
 		} else {
-			desc += "Opens: down\n";
+			desc += "Opens: Down\n";
 		}
 		double h = -b / (2 * a); // from the equation a(x-h)^2 + k; also the axis of symmetry
-		desc += "Axis of Symmetry: " + h + "\n";
+		desc += "Axis of Symmetry: " + round2(h) + "\n";
 		double k = c - (h * h); // from the equation a(x-h)^2 + k
-		desc += "Vertex: (" + h + ", " + k + ")\n";
+		desc += "Vertex: (" + round2(h) + ", " + round2(k) + ")\n";
 		desc += "X-intercept(s): ";
 		String roots = quadForm(a, b, c);
-		if (roots.equals("no real roots")) {
-			desc += "None";
-		} else {
+		if (!(roots.equals("no real roots"))) {
 			desc += roots;
+		} else {
+			desc += "None";
 		}
-		desc += "Y-intercept: " + c;
+		desc += "\nY-intercept: " + round2(c);
 		return desc;
 	}
 	
