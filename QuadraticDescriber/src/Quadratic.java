@@ -18,7 +18,7 @@ public class Quadratic {
 		}
 		double h = -b / (2 * a); // from the equation a(x-h)^2 + k; also the axis of symmetry
 		desc += "Axis of Symmetry: " + round2(h) + "\n";
-		double k = c - (h * h); // from the equation a(x-h)^2 + k
+		double k = (4 * a * c - (b * b)) / (4 * a); // from the equation a(x-h)^2 + k
 		desc += "Vertex: (" + round2(h) + ", " + round2(k) + ")\n";
 		desc += "X-intercept(s): ";
 		String roots = quadForm(a, b, c);
@@ -41,7 +41,7 @@ public class Quadratic {
 		} else {
 			double posResult = (-b + sqrt(discr)) / (2 * a);
 			double negResult = (-b - sqrt(discr)) / (2 * a);
-			return round2(negResult) + " and " + round2(posResult);
+			return round2(min(posResult, negResult)) + " and " + round2(max(posResult, negResult));
 		}
 		
 	}
@@ -56,7 +56,7 @@ public class Quadratic {
 		} else {
 			double posResult = (-b + sqrt(discr)) / (2 * a);
 			double negResult = (-b - sqrt(discr)) / (2 * a);
-			return round2(negResult) + " and " + round2(posResult);
+			return round2(min(posResult, negResult)) + " and " + round2(max(posResult, negResult));
 		}
 	}
 		
@@ -89,4 +89,37 @@ public class Quadratic {
 		public static double discriminant(double a, double b, double c) {
 			return (b * b) - (4 * a * c);
 		}
+		
+		public static double max(double num1, double num2) {
+			if (num1 > num2) {
+				return num1;
+			} else {
+				return num2;
+			}
+		}
+		
+		public static int max(int num1, int num2) {
+			if (num1 < num2) {
+				return num1;
+			} else {
+				return num2;
+			}
+		}
+		
+		public static int min(int num1, int num2) {
+			if (num1 < num2) {
+				return num1;
+			} else {
+				return num2;
+			}
+		}
+		
+		public static double min(double num1, double num2) {
+			if (num1 < num2) {
+				return num1;
+			} else {
+				return num2;
+			}
+		}
+
 }
