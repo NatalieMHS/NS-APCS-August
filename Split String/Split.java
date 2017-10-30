@@ -4,7 +4,7 @@ import java.util.*;
 public class Split {
 	
 	public static void main(String[] args) {
-		String sandwich = "applesbreadpineappleslettustomatobaconmayohambreadcheese";
+		String sandwich = "applespineapplesbreadlettustomatobaconmayohambreadcheese";
 
 		//Your task Part 1:
 		/*Write a method that take in a string like "applespineapplesbreadlettustomatobaconmayohambreadcheese" describing a sandwich
