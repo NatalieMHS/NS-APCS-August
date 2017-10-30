@@ -45,21 +45,25 @@ public class Split {
 					numBread++;
 				}
 		}
-		
-		int[] breadIndices = new int[numBread];
-		int counter = 0;
-		for (int i = 0; i < toppings.length; i++) {
-			if (toppings[i].equals("bread")) {
-				breadIndices[counter] = i;
-				counter++;
+		if (numBread < 2) {
+			return sandwich + " is not a sandwich";
+		} else {
+			
+			int[] breadIndices = new int[numBread];
+			int counter = 0;
+			for (int i = 0; i < toppings.length; i++) {
+				if (toppings[i].equals("bread")) {
+					breadIndices[counter] = i;
+					counter++;
+				}
 			}
+			
+			String middle = "";
+			for (int i = breadIndices[0] + 1; i < breadIndices[breadIndices.length - 1]; i++) {
+				middle += toppings[i] + " ";
+			}
+			
+			return middle;
 		}
-		
-		String middle = "";
-		for (int i = breadIndices[0] + 1; i < breadIndices[breadIndices.length - 1]; i++) {
-			middle += toppings[i] + " ";
-		}
-		
-		return middle;
 	}
 }
