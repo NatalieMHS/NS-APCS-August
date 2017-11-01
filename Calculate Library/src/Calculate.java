@@ -57,7 +57,6 @@ public class Calculate {
 	}
 	
 	// converts an improper fraction into a mixed number
-	// can also handle negative numbers (extra credit please gotta raise my grade y'know?)
 	public static String toMixedNum(int numerator, int denominator) {
 		int mixed = numerator / denominator;
 		int newNumerator = numerator % denominator;

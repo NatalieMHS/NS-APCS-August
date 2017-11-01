@@ -4,7 +4,7 @@ import java.util.*;
 public class Split {
 	
 	public static void main(String[] args) {
-		String sandwich = "applespineapplesbreadlettustomatobaconmayohambreadcheese";
+		String sandwich = "applespineapplesbreadlettustomatobreadbaconmayohambreadcheese";
 
 		//Your task Part 1:
 		/*Write a method that take in a string like "applespineapplesbreadlettustomatobaconmayohambreadcheese" describing a sandwich
@@ -20,7 +20,7 @@ public class Split {
 		* Again, what if it's a fancy sandwich with multiple pieces of bread?
 		*/
 		
-		String sandwich2 = "apples pineapples bread lettus tomato bacon mayo ham bread cheese";
+		String sandwich2 = "apples pineapples bread lettus tomato bread bacon mayo ham bread cheese";
 		System.out.println(sandwichMiddle2(sandwich2));
 	}
 	
@@ -60,7 +60,9 @@ public class Split {
 			
 			String middle = "";
 			for (int i = breadIndices[0] + 1; i < breadIndices[breadIndices.length - 1]; i++) {
-				middle += toppings[i] + " ";
+				if (!(toppings[i].equals("bread"))) {	
+					middle += toppings[i] + " ";
+				}
 			}
 			
 			return middle;

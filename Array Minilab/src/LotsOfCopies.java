@@ -1,3 +1,7 @@
+/* Natalie Suboc
+ * October 30, 2017
+ * Array Mini-Lab
+ */
 
 public class LotsOfCopies {
 
@@ -15,7 +19,6 @@ public class LotsOfCopies {
 		x++;
 		str += "idek";
 		arr[0] = 1000;
-		System.out.println(x + str + arr[0]);
 	}
 
 }
