@@ -16,7 +16,9 @@ public class ArraysLab3 {
 		
 		System.out.println(Arrays.toString(sumArr));
 		System.out.println(Arrays.toString(appendArr));
-		
+		System.out.println(Arrays.toString(removeArr));
+		System.out.println(sumOfEvens);
+		System.out.println(Arrays.toString(a1));
 		
 	}
 	
@@ -29,7 +31,7 @@ public class ArraysLab3 {
 	}
 	
 	public static int[] append(int[] arr, int num) {
-		int[] arr2 = new int[arr.length];
+		int[] arr2 = new int[arr.length+1];
 		for (int i = 0; i < arr.length; i++) {
 			arr2[i] = arr[i];
 		}
@@ -52,7 +54,7 @@ public class ArraysLab3 {
 	public static int sumEven(int[] arr) {
 		int sum = 0;
 		for (int i = 0; i < arr.length; i += 2) {
-			sum += i;
+			sum += arr[i];
 		}
 		return sum;
 	}
