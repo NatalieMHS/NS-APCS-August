@@ -20,6 +20,21 @@ public class LotsOfCopies {
 		str += "idek";
 		arr[0] = 1000;
 		
+		x = 3;
+		int y = x;
+		x=23;
+		System.out.println("y: " + y);
+		
+		str = "hhhhh";
+		String bstr = str;
+		str = "iiiiii";
+		System.out.println("bstr: " + bstr);
+		
+		int[] newArr = arr;
+		newArr[1] = arr[1];
+		arr[1] = 20;
+		System.out.println("newArr[1]: " + newArr[1]);
+		
 	}
 
 }
