@@ -186,6 +186,9 @@ public class FracCalc {
 		} else {
 			result = numer + "/" + denom;
 		}
+		if (numer == 0) {
+			result = "0";
+		}
 		return result;
 	}
 }
