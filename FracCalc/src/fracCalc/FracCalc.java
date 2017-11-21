@@ -176,6 +176,8 @@ public class FracCalc {
 		return result;
 	}
 	
+	// reduces the fraction and changes it to a mixed number,
+	// if it's improper
 	public static String reduceFrac(int numer, int denom) {
 		String result = "";
 		int gcfFrac = gcf(numer, denom);
