@@ -53,10 +53,10 @@ public class FracCalc {
         int[] result = new int[2];
         if (operand.equals("/") || operand.equals("*")) {
         	result = multiplyOrDivide(impFrac1, operand, impFrac2);
-        	return result[0] + "/" + result[1];
+        	return reduceFrac(result[0], result[1]);
         } else if (operand.equals("+") || operand.equals("-")) {
         	result = addOrSubtract(impFrac1, operand, impFrac2);
-        	return result[0] + "/" + result[1];
+        	return reduceFrac(result[0], result[1]);
         } else {
         	return "Not a valid operator";
         }
@@ -97,6 +97,52 @@ public class FracCalc {
 		return impFrac;
 	}
 	
+	// checks to see if a number is divisible by another number
+	public static boolean isDivisibleBy(int dividend, int divisor) {
+		if (divisor == 0) {
+			throw new IllegalArgumentException("ERROR: Cannot be divided by 0.");
+		}
+		return dividend % divisor == 0;
+	}
+	
+	// takes two integers and returns the smallest one
+	public static int min(int num1, int num2) {
+		if (num1 < num2) {
+			return num1;
+		} else {
+			return num2;
+		}
+	}
+	
+	// evaluates the greatest common factor of two numbers
+	public static int gcf(int num1, int num2) {
+		int gcf = 1;
+		for (int i = 1; i <= min(num1, num2); i++) {
+			if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
+				if (gcf < i) {
+					gcf = i;
+				}
+			}
+		}
+		return gcf;
+	}
+	
+	// converts an improper fraction into a mixed number
+	public static String toMixedNum(int numerator, int denominator) {
+		int mixed = numerator / denominator;
+		int newNumerator = numerator % denominator;
+		return mixed + "_" + (int) absValue(newNumerator) + "/" + (int) absValue(denominator);
+	}
+	
+	// returns the absolute value of a number
+	public static double absValue(double operand) {
+		if (operand < 0) {
+			return -operand;
+		} else {
+			return operand;
+		}
+	}
+	
 	// adds or subtracts the fractions
 	public static int[] addOrSubtract(int[] frac1, String operand, int[] frac2) {
 		int comDenom = frac1[1] * frac2[1];
@@ -127,6 +173,19 @@ public class FracCalc {
 			denom = -denom;
 		}
 		int[] result = {numer, denom};
+		return result;
+	}
+	
+	public static String reduceFrac(int numer, int denom) {
+		String result = "";
+		int gcfFrac = gcf(numer, denom);
+		numer /= gcfFrac;
+		denom /= gcfFrac;
+		if (numer > denom) {
+			result = toMixedNum(numer, denom);
+		} else {
+			result = numer + "/" + denom;
+		}
 		return result;
 	}
 }
