@@ -58,7 +58,7 @@ public class FracCalc {
         	result = addOrSubtract(impFrac1, operand, impFrac2);
         	return reduceFrac(result[0], result[1]);
         } else {
-        	return "Not a valid operator";
+        	return "ERROR: Not a valid operator.";
         }
     }
 
@@ -117,6 +117,8 @@ public class FracCalc {
 	// evaluates the greatest common factor of two numbers
 	public static int gcf(int num1, int num2) {
 		int gcf = 1;
+		num1 = absValue(num1);
+		num2 = absValue(num2);
 		for (int i = 1; i <= min(num1, num2); i++) {
 			if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
 				if (gcf < i) {
@@ -131,11 +133,15 @@ public class FracCalc {
 	public static String toMixedNum(int numerator, int denominator) {
 		int mixed = numerator / denominator;
 		int newNumerator = numerator % denominator;
-		return mixed + "_" + (int) absValue(newNumerator) + "/" + (int) absValue(denominator);
+		if (mixed == 0) {
+			return mixed + "_" + (int) newNumerator + "/" + (int) denominator;
+		} else {
+			return mixed + "_" + (int) absValue(newNumerator) + "/" + (int) absValue(denominator);
+		}
 	}
 	
 	// returns the absolute value of a number
-	public static double absValue(double operand) {
+	public static int absValue(int operand) {
 		if (operand < 0) {
 			return -operand;
 		} else {
@@ -181,13 +187,26 @@ public class FracCalc {
 		int gcfFrac = gcf(numer, denom);
 		numer /= gcfFrac;
 		denom /= gcfFrac;
-		if (numer > denom) {
+		if (numer > 0 && denom < 0) {
+			numer = -numer;
+			denom = -denom;
+		}
+		if (numer > denom || (numer < 0 && numer < denom)) {
 			result = toMixedNum(numer, denom);
+			if (result.charAt(0) == '0') {
+				result = numer + "/" + denom;
+			}
 		} else {
 			result = numer + "/" + denom;
 		}
 		if (numer == 0) {
 			result = "0";
+		}
+		if (denom == 0) {
+			throw new IllegalArgumentException("ERROR: Cannot divide by 0.");
+		}
+		if (denom == 1) {
+			result = numer + "";
 		}
 		return result;
 	}
