@@ -33,9 +33,10 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) { 
     	
-        String[] splitExpr = input.split(" ");
+        
+    	String[] splitExpr = input.split(" ");
         String firstFrac = splitExpr[0];
-        String operand = splitExpr[1];
+        String operator = splitExpr[1];
         String secFrac = splitExpr[2];
         
         String[] splitFrac1 = parseFrac(firstFrac); 
@@ -51,11 +52,11 @@ public class FracCalc {
         int[] impFrac1 = toImproperFrac(fracNums1[0], fracNums1[1], fracNums1[2]);
         int[] impFrac2 = toImproperFrac(fracNums2[0], fracNums2[1], fracNums2[2]);
         int[] result = new int[2];
-        if (operand.equals("/") || operand.equals("*")) {
-        	result = multiplyOrDivide(impFrac1, operand, impFrac2);
+        if (operator.equals("/") || operator.equals("*")) {
+        	result = multiplyOrDivide(impFrac1, operator, impFrac2);
         	return reduceFrac(result[0], result[1]);
-        } else if (operand.equals("+") || operand.equals("-")) {
-        	result = addOrSubtract(impFrac1, operand, impFrac2);
+        } else if (operator.equals("+") || operator.equals("-")) {
+        	result = addOrSubtract(impFrac1, operator, impFrac2);
         	return reduceFrac(result[0], result[1]);
         } else {
         	return "ERROR: Not a valid operator.";
@@ -150,12 +151,12 @@ public class FracCalc {
 	}
 	
 	// adds or subtracts the fractions
-	public static int[] addOrSubtract(int[] frac1, String operand, int[] frac2) {
+	public static int[] addOrSubtract(int[] frac1, String operator, int[] frac2) {
 		int comDenom = frac1[1] * frac2[1];
 		frac1[0] *= frac2[1];
 		frac2[0] *= frac1[1];
 		int numer = 0;
-		if (operand.equals("-")) {
+		if (operator.equals("-")) {
 			frac2[0] = -frac2[0];
 		}
 		numer = frac1[0] + frac2[0];
@@ -164,10 +165,10 @@ public class FracCalc {
 	}	
 	
 	// multiplies or divides the two fractions
-	public static int[] multiplyOrDivide(int[] frac1, String operand, int[] frac2) {
+	public static int[] multiplyOrDivide(int[] frac1, String operator, int[] frac2) {
 		int numer = 0;
 		int denom = 1;
-		if (operand.equals("/")) {
+		if (operator.equals("/")) {
 			int newDenom = frac2[0];
 			frac2[0] = frac2[1];
 			frac2[1] = newDenom;
