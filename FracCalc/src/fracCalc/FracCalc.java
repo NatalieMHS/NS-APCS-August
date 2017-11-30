@@ -32,8 +32,7 @@ public class FracCalc {
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) { 
-    	
-        
+
     	String[] splitExpr = input.split(" ");
         String firstFrac = splitExpr[0];
         String operator = splitExpr[1];
