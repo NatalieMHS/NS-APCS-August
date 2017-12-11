@@ -15,8 +15,8 @@ public class Fraction {
         
         String[] splitFrac1 = parseFrac(firstFrac); 
         String[] splitFrac2 = parseFrac(secFrac);
+        this.whole = Integer.parseInt(splitFrac2[0]);
         
-		
 	}
 	
    	private String[] parseFrac(String fraction) {
