@@ -1,10 +1,25 @@
+/* Natalie Suboc
+ * December 13, 2017
+ * FracCalc client code
+ */ 
+
 package fracCalc;
+
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class FracCalc {
 
     public static void main(String[] args) 
     {
-        // TODO: Read the input from the user and call produceAnswer with an equation
+    	Scanner input = new Scanner(System.in);
+    	do {
+    		String expression = input.nextLine();
+    		if (expression.equals("quit")) {
+    			break;
+    		}
+    		System.out.println(produceAnswer(expression));
+    	} while (true);
 
     }
     
@@ -18,11 +33,8 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input)
     { 
-        // TODO: Implement this function to produce the solution to the input
-        
-        return "";
+        Fraction frac = new Fraction(input);
+        return frac.toString(frac);
     }
-
-    // TODO: Fill in the space below with any helper methods that you think you will need
-    
+ 
 }
