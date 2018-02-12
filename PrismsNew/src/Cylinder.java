@@ -8,17 +8,17 @@ public class Cylinder extends Prism {
 	
 	private double radius;
 	
-	public Cylinder(double h, double r) {
+	public Cylinder(double r, double h) {
 		super(h);
 		radius = r;
 	}
 	
 	public double calcAreaOfBase() {
-		return radius * radius * 3.14;
+		return radius * radius * Math.PI;
 	}
 	
 	public double calcPerimeter() {
-		return 2 * 3.14 * radius;
+		return 2 * Math.PI * radius;
 	}
 	
 	
