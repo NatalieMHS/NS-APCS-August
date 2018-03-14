@@ -13,11 +13,12 @@ public class TextExcel
 	    Scanner console = new Scanner(System.in);
 	    Spreadsheet mySpreadsheet = new Spreadsheet();
 	    while (true) {
+	    		System.out.print("> ");
 	    		String command = console.nextLine();
 	    		if (command.toLowerCase().equals("quit")) {
 	    			break;
 	    		}
-	    		System.out.println(mySpreadsheet.processCommand(command));
+	    		System.out.print(mySpreadsheet.processCommand(command));
 	    		
 	    }
 	}
