@@ -20,7 +20,8 @@ public class SpreadsheetLocation implements Location
     
     public SpreadsheetLocation(String cellName)
     {
-        this.cellName = cellName;
+    		
+        this.cellName = cellName.toUpperCase();
     }
 
 }

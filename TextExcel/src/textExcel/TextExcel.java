@@ -3,6 +3,8 @@ package textExcel;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import textExcel.TestsALL.Helper;
+
 // Update this file with your own code.
 
 public class TextExcel
