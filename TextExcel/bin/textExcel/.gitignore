@@ -22,3 +22,7 @@
 /TestsALL.class
 /TextExcel.class
 /TextCell.class
+/RealCell.class
+/ValueCell.class
+/PercentCell.class
+/FormulaCell.class

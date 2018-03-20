@@ -93,7 +93,6 @@ public class Spreadsheet implements Grid
 		}
 		grid += row + "\n";
 	}
-
 	return grid;
 }
 
