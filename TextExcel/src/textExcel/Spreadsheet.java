@@ -22,7 +22,7 @@ public class Spreadsheet implements Grid
 	public String processCommand(String command)
 	{
 		String result = "";
-		if (command.toLowerCase().contains("clear") && command.split(" ", 2)[0].toLowerCase().equals("clear")) {
+		if (command.split(" ", 2)[0].toLowerCase().equals("clear")) {
 			if (command.contains(" ")) {
 				String cellName = command.split(" ")[1];
 				SpreadsheetLocation cell = new SpreadsheetLocation(cellName);
@@ -89,7 +89,7 @@ public class Spreadsheet implements Grid
 			row += (i+1) + " |";
 		}
 		for (int j = 0; j < numCols; j++) {
-			row += String.format("%-10s", ((Cell) spreadsheet[i][j]).abbreviatedCellText()) + "|";
+			row += spreadsheet[i][j].abbreviatedCellText() + "|";
 		}
 		grid += row + "\n";
 	}
