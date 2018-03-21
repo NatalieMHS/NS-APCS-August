@@ -41,6 +41,7 @@ public class Spreadsheet implements Grid
 			String cellName = command.split(" ", 3)[0];
 			SpreadsheetLocation cell = new SpreadsheetLocation(cellName);
 			if (command.contains("=")) {
+				// call setCell(command.split(" ", 3)[2], cell);
 				spreadsheet[cell.getRow()][cell.getCol()] = new TextCell(command.split(" ", 3)[2]);
 				result = getGridText();
 			} else {
@@ -83,11 +84,7 @@ public class Spreadsheet implements Grid
 	// the rest of the rows - table of values
 	for (int i = 0; i < numRows; i++) {
 		String row = "";
-		if (i < 9) {
-			row += (i+1) + "  |";
-		} else {
-			row += (i+1) + " |";
-		}
+		row += String.format("%-3s", i+1) + "|";
 		for (int j = 0; j < numCols; j++) {
 			row += spreadsheet[i][j].abbreviatedCellText() + "|";
 		}
@@ -95,5 +92,21 @@ public class Spreadsheet implements Grid
 	}
 	return grid;
 }
+	// determines the type of a value and sets a value to a cell
+	private void setCell(String value, Location loc) {
+		if (!Character.isDigit(value.charAt(0))) {
+			if (value.charAt(0) == '(' && value.charAt(value.length() - 1) == ')') {
+				
+			} else {
+				spreadsheet[loc.getRow()][loc.getCol()] = new TextCell(value);
+			}
+		} else {
+			if (value.contains("%")) {
+				
+			} else if (value.contains(".")) {
+				
+			}
+		}
+	}
 
 }
