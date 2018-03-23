@@ -22,7 +22,9 @@ public class Spreadsheet implements Grid
 	public String processCommand(String command)
 	{
 		String result = "";
-		if (command.split(" ", 2)[0].toLowerCase().equals("clear")) {
+		if (command.equals("")) {
+			
+		} else if (command.split(" ", 2)[0].toLowerCase().equals("clear")) {
 			if (command.contains(" ")) {
 				String cellName = command.split(" ")[1];
 				SpreadsheetLocation cell = new SpreadsheetLocation(cellName);
@@ -41,8 +43,22 @@ public class Spreadsheet implements Grid
 			String cellName = command.split(" ", 3)[0];
 			SpreadsheetLocation cell = new SpreadsheetLocation(cellName);
 			if (command.contains("=")) {
-				// call setCell(command.split(" ", 3)[2], cell);
-				spreadsheet[cell.getRow()][cell.getCol()] = new TextCell(command.split(" ", 3)[2]);
+				String value = command.split(" ", 3)[2];
+				// Cell target = spreadsheet[cell.getRow()][cell.getCol()];
+				if (!Character.isDigit(value.charAt(0)) && value.charAt(0) != '-') {
+					if (value.charAt(0) == '(' && value.charAt(value.length() - 1) == ')') {
+						spreadsheet[cell.getRow()][cell.getCol()] = new FormulaCell(value);
+					} else {
+						spreadsheet[cell.getRow()][cell.getCol()] = new TextCell(value);
+					}
+				} else {
+					if (value.contains("%")) {
+						spreadsheet[cell.getRow()][cell.getCol()] = new PercentCell(value);
+					} else if (value.contains(".") || Character.isDigit(value.charAt(0))
+							|| value.charAt(0) == '-') {
+						spreadsheet[cell.getRow()][cell.getCol()] = new ValueCell(value);
+					}
+				}
 				result = getGridText();
 			} else {
 				result = spreadsheet[cell.getRow()][cell.getCol()].fullCellText();
@@ -72,8 +88,7 @@ public class Spreadsheet implements Grid
 	}
 
 	@Override
-	public String getGridText()
-{
+	public String getGridText() {
 	String grid = "";
 	// first row - column header
 	String firstRow = "   |";
@@ -91,22 +106,7 @@ public class Spreadsheet implements Grid
 		grid += row + "\n";
 	}
 	return grid;
-}
-	// determines the type of a value and sets a value to a cell
-	private void setCell(String value, Location loc) {
-		if (!Character.isDigit(value.charAt(0))) {
-			if (value.charAt(0) == '(' && value.charAt(value.length() - 1) == ')') {
-				
-			} else {
-				spreadsheet[loc.getRow()][loc.getCol()] = new TextCell(value);
-			}
-		} else {
-			if (value.contains("%")) {
-				
-			} else if (value.contains(".")) {
-				
-			}
-		}
 	}
-
 }
+
+
