@@ -2,17 +2,14 @@ package textExcel;
 
 public class PercentCell extends RealCell {
 	
-	private String exactValue;
-	
 	public PercentCell(String input) {
 		super(input);
-		exactValue = input;
 	}
 	
 	public String abbreviatedCellText() {
-		String roundedVal = exactValue;
-		if (exactValue.contains(".")) {
-			roundedVal = exactValue.substring(0, exactValue.indexOf(".")) + "%";
+		String roundedVal = getVal();
+		if (getVal().contains(".")) {
+			roundedVal = getVal().substring(0, getVal().indexOf(".")) + "%";
 		}
 		if (roundedVal.length() < 10) {
 			return roundedVal + abrvTextSpaces(roundedVal);
@@ -24,7 +21,7 @@ public class PercentCell extends RealCell {
 		return getDoubleValue() + "";
 	}
 	public double getDoubleValue() {
-		return Double.parseDouble(exactValue.substring(0, exactValue.length()-1)) * 0.01;
+		return Double.parseDouble(getVal().substring(0, getVal().length()-1)) * 0.01;
 	}
 
 }

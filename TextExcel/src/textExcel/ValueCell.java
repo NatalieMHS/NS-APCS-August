@@ -2,11 +2,8 @@ package textExcel;
 
 public class ValueCell extends RealCell {
 
-	private String exactValue;
-	
 	public ValueCell(String input) {
 		super(input);
-		exactValue = input;
 	}
 	
 	public String abbreviatedCellText() {
@@ -17,7 +14,7 @@ public class ValueCell extends RealCell {
 		}
 	}
 	public String fullCellText() {
-		return exactValue + "";
+		return getVal() + "";
 	}
 	public double getDoubleValue() {
 		return super.getDoubleValue();

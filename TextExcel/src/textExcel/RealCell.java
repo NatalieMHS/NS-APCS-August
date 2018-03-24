@@ -13,6 +13,10 @@ public abstract class RealCell implements Cell {
 		return Double.parseDouble(value);
 	}
 	
+	public String getVal() {
+		return value;
+	}
+	
 	public String abrvTextSpaces(String text) {
 		String numSpaces = "";
 		for (int i = 0; i < 10 - text.length(); i++) {
