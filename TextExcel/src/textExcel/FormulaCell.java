@@ -4,18 +4,21 @@ import java.util.Arrays;
 
 public class FormulaCell extends RealCell {
 	
-	//private String exactValue;
-	public FormulaCell(String input) {
+	Cell[][] spreadsheet;
+	
+	public FormulaCell(String input, Cell[][] spreadsheet) {
 		super(input);
+		this.spreadsheet = spreadsheet;
 		
 	}
 	public String abbreviatedCellText() {
 		if ((getDoubleValue() + "").length() < 10) {
-			return getDoubleValue() + abrvTextSpaces(getDoubleValue() + "");
+			return getDoubleValue() + pad(getDoubleValue() + "");
 		} else {
 			return (getDoubleValue() + "").substring(0, 10);
 		}
 	}
+	
 	public String fullCellText() {
 		return getVal();
 	}
@@ -23,7 +26,19 @@ public class FormulaCell extends RealCell {
 		String[] splitFormula = (getVal().substring(2, getVal().length() - 2)).split(" ");
 		if (splitFormula.length <= 1) {
 			return Double.parseDouble(splitFormula[0]);
+		} else if (getVal().toUpperCase().contains("SUM")) {
+			String[] cellLocs = splitFormula[1].split("-");
+			return sum(cellLocs[0], cellLocs[1]);
+		} else if (getVal().toUpperCase().contains("AVG")) {
+			String[] cellLocs = splitFormula[1].split("-");
+			return avg(cellLocs[0], cellLocs[1]);
 		} else {
+			for (int i = 0; i < splitFormula.length; i++) {
+				if (Character.isLetter(splitFormula[i].charAt(0))) {
+					Location cell = new SpreadsheetLocation(splitFormula[i]);
+					splitFormula[i] = ((RealCell) spreadsheet[cell.getRow()][cell.getCol()]).getDoubleValue() + "";
+				}
+			}
 			double result = doOperation(Double.parseDouble(splitFormula[0]), splitFormula[1],
 				Double.parseDouble(splitFormula[2]));
 			for (int i = 2; i < splitFormula.length - 1; i += 2) {
@@ -45,5 +60,28 @@ public class FormulaCell extends RealCell {
 		else if (operator.equals("/"))
 			result = ((double) num1) / num2;
 		return result;
+	}
+	
+	public double sum(String startCell, String endCell) {
+		double sum = 0;
+		SpreadsheetLocation start = new SpreadsheetLocation(startCell);
+		SpreadsheetLocation end = new SpreadsheetLocation(endCell);
+		System.out.println(start.getRow() + end.getRow());
+		System.out.println(start.getCol() + end.getCol());
+		for (int i = start.getRow(); i < end.getRow(); i++) {
+			for (int j = start.getCol(); j < end.getCol(); j++) {
+				System.out.println(((RealCell) spreadsheet[i][j]).getDoubleValue());
+				RealCell target = (RealCell) spreadsheet[i][j];
+				sum += target.getDoubleValue();
+			}
+		}
+		return sum;
+	}
+	
+	public double avg(String startCell, String endCell) {
+		SpreadsheetLocation start = new SpreadsheetLocation(startCell);
+		SpreadsheetLocation end = new SpreadsheetLocation(endCell);
+		int numCells = (end.getCol() - start.getCol()) * (end.getRow() - start.getRow());
+		return sum(startCell, endCell) / (double) numCells;
 	}
 }

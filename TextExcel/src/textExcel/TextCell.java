@@ -33,11 +33,11 @@ public class TextCell implements Cell {
 				abrvText = text;
 			}
 		}
-		int numSpaces = 10 - abrvText.length();
-		for (int i = 0; i < numSpaces; i++) {
-			abrvText += " ";
+		String numSpaces = "";
+		for (int i = 0; i < 10 - abrvText.length(); i++) {
+			numSpaces += " ";
 		}
-		return abrvText;
+		return abrvText + numSpaces;
 	}
 	
 	public String fullCellText() {

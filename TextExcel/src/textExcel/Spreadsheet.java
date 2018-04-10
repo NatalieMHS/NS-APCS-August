@@ -8,10 +8,9 @@ public class Spreadsheet implements Grid
 {
 	private int numRows = 20;
 	private int numCols = 12;
-	private Cell[][] spreadsheet;
+	private Cell[][] spreadsheet = new Cell[numRows][numCols];
 	
 	public Spreadsheet() {
-		spreadsheet = new Cell[numRows][numCols];
 		for (int row = 0; row < numRows; row++) {
 			for (int col = 0; col < numCols; col++) {
 				spreadsheet[row][col] = new EmptyCell();
@@ -44,10 +43,10 @@ public class Spreadsheet implements Grid
 			SpreadsheetLocation cell = new SpreadsheetLocation(cellName);
 			if (command.contains("=")) {
 				String value = command.split(" ", 3)[2];
-				// Cell target = spreadsheet[cell.getRow()][cell.getCol()];
+				Cell target = spreadsheet[cell.getRow()][cell.getCol()];
 				if (!Character.isDigit(value.charAt(0)) && value.charAt(0) != '-') {
 					if (value.charAt(0) == '(' && value.charAt(value.length() - 1) == ')') {
-						spreadsheet[cell.getRow()][cell.getCol()] = new FormulaCell(value);
+						spreadsheet[cell.getRow()][cell.getCol()] = new FormulaCell(value, spreadsheet);
 					} else {
 						spreadsheet[cell.getRow()][cell.getCol()] = new TextCell(value);
 					}
@@ -64,7 +63,7 @@ public class Spreadsheet implements Grid
 				result = spreadsheet[cell.getRow()][cell.getCol()].fullCellText();
 			}
 		} else {
-			// other commands
+			System.out.println("Unknown command. Type 'quit' to exit the program.");
 		}
 		return result;
 	}
@@ -108,5 +107,3 @@ public class Spreadsheet implements Grid
 	return grid;
 	}
 }
-
-

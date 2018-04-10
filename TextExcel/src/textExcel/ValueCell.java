@@ -8,7 +8,7 @@ public class ValueCell extends RealCell {
 	
 	public String abbreviatedCellText() {
 		if ((getDoubleValue() + "").length() < 10) {
-			return getDoubleValue() + abrvTextSpaces(getDoubleValue() + "");
+			return getDoubleValue() + pad(getDoubleValue() + "");
 		} else {
 			return (getDoubleValue() + "").substring(0, 10);
 		}

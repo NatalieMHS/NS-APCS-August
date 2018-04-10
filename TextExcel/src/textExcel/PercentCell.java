@@ -12,7 +12,7 @@ public class PercentCell extends RealCell {
 			roundedVal = getVal().substring(0, getVal().indexOf(".")) + "%";
 		}
 		if (roundedVal.length() < 10) {
-			return roundedVal + abrvTextSpaces(roundedVal);
+			return roundedVal + pad(roundedVal);
 		} else {
 			return roundedVal.substring(0, 10);
 		}

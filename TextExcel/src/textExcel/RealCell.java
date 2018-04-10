@@ -17,7 +17,7 @@ public abstract class RealCell implements Cell {
 		return value;
 	}
 	
-	public String abrvTextSpaces(String text) {
+	public String pad(String text) {
 		String numSpaces = "";
 		for (int i = 0; i < 10 - text.length(); i++) {
 			numSpaces += " ";
