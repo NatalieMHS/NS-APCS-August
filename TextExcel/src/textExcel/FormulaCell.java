@@ -66,11 +66,8 @@ public class FormulaCell extends RealCell {
 		double sum = 0;
 		SpreadsheetLocation start = new SpreadsheetLocation(startCell);
 		SpreadsheetLocation end = new SpreadsheetLocation(endCell);
-		System.out.println(start.getRow() + end.getRow());
-		System.out.println(start.getCol() + end.getCol());
-		for (int i = start.getRow(); i < end.getRow(); i++) {
-			for (int j = start.getCol(); j < end.getCol(); j++) {
-				System.out.println(((RealCell) spreadsheet[i][j]).getDoubleValue());
+		for (int i = start.getRow(); i <= end.getRow(); i++) {
+			for (int j = start.getCol(); j <= end.getCol(); j++) {
 				RealCell target = (RealCell) spreadsheet[i][j];
 				sum += target.getDoubleValue();
 			}
@@ -81,7 +78,7 @@ public class FormulaCell extends RealCell {
 	public double avg(String startCell, String endCell) {
 		SpreadsheetLocation start = new SpreadsheetLocation(startCell);
 		SpreadsheetLocation end = new SpreadsheetLocation(endCell);
-		int numCells = (end.getCol() - start.getCol()) * (end.getRow() - start.getRow());
+		int numCells = ((end.getCol() + 1) - start.getCol()) * ((end.getRow() + 1) - start.getRow());
 		return sum(startCell, endCell) / (double) numCells;
 	}
 }
