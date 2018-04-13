@@ -12,16 +12,6 @@ public class TextCell implements Cell {
 	public String abbreviatedCellText() {
 		String abrvText = ""; // TODO: remove redundancy
 		int textLen = text.length();
-		/*if (text.contains("\"")) {
-			text = text.substring(1, text.length() - 1);
-			if (text.length() > 10) {
-				for (int i = 0; i < 10; i++) {
-					abrvText += text.charAt(i);
-				}
-			} else {
-				abrvText += text;
-			}
-		} */
 		if (text.length() > 10) {
 			if (text.contains("\"")) {
 				String noQuotesText = text.substring(1, text.length()-1);

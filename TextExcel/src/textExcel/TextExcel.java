@@ -5,7 +5,12 @@ import java.util.Scanner;
 
 import textExcel.TestsALL.Helper;
 
-// Update this file with your own code.
+/* Natalie Suboc
+ * April 12, 2018
+ * TextExcel Project - recreation of an excel spreadsheet
+ * with basic commands such as setting text and manipulating
+ * numbers
+ */
 
 public class TextExcel
 {
