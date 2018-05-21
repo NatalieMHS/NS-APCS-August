@@ -34,13 +34,16 @@ public class FormulaCell extends RealCell {
 		String[] splitFormula = (getVal().substring(2, getVal().length() - 2)).split(" ");
 		if (splitFormula.length <= 1) {
 			return Double.parseDouble(splitFormula[0]);
+		// sum command handler
 		} else if (getVal().toUpperCase().contains("SUM")) {
 			String[] cellLocs = splitFormula[1].split("-");
 			return sum(cellLocs[0], cellLocs[1]);
+		// average command handler
 		} else if (getVal().toUpperCase().contains("AVG")) {
 			String[] cellLocs = splitFormula[1].split("-");
 			return avg(cellLocs[0], cellLocs[1]);
 		} else {
+			// evaluation of formulas without SUM or AVG
 			for (int i = 0; i < splitFormula.length; i++) {
 				if (Character.isLetter(splitFormula[i].charAt(0))) {
 					Location cell = new SpreadsheetLocation(splitFormula[i]);
