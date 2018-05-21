@@ -1,6 +1,6 @@
 package textExcel;
 
-//Update this file with your own code.
+// Creates a SpreadsheetLocation that holds the row and column of a cell's location
 
 public class SpreadsheetLocation implements Location
 {

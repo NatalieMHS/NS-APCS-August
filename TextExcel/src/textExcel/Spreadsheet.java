@@ -2,7 +2,8 @@ package textExcel;
 
 import textExcel.TestsALL.Helper;
 
-// Update this file with your own code.
+// initializes spreadsheet and parses the type of cell that's being
+// created depending on user input
 
 public class Spreadsheet implements Grid
 {
@@ -18,11 +19,13 @@ public class Spreadsheet implements Grid
 		}
 	}
 	@Override
+	// processes user input and incorporates into the textExcel spreadsheet
 	public String processCommand(String command)
 	{
 		String result = "";
 		if (command.equals("")) {
-			
+			// does nothing in case of empty string being passed in 
+		// clears either the entire grid or a single cell
 		} else if (command.split(" ", 2)[0].toLowerCase().equals("clear")) {
 			if (command.contains(" ")) {
 				String cellName = command.split(" ")[1];
@@ -44,13 +47,16 @@ public class Spreadsheet implements Grid
 			if (command.contains("=")) {
 				String value = command.split(" ", 3)[2];
 				Cell target = spreadsheet[cell.getRow()][cell.getCol()];
+				// determines whether the cell contains text (TextCell or FormulaCell) or numbers (RealCell)
 				if (!Character.isDigit(value.charAt(0)) && value.charAt(0) != '-') {
+					// checks if the cell contains parentheses, in which case it would be a FormulaCell
 					if (value.charAt(0) == '(' && value.charAt(value.length() - 1) == ')') {
 						spreadsheet[cell.getRow()][cell.getCol()] = new FormulaCell(value, spreadsheet);
 					} else {
 						spreadsheet[cell.getRow()][cell.getCol()] = new TextCell(value);
 					}
 				} else {
+					// checks if cell has a percent sign (PercentCell) or a decimal/number (ValueCell)
 					if (value.contains("%")) {
 						spreadsheet[cell.getRow()][cell.getCol()] = new PercentCell(value);
 					} else if (value.contains(".") || Character.isDigit(value.charAt(0))
@@ -87,6 +93,7 @@ public class Spreadsheet implements Grid
 	}
 
 	@Override
+	// displays the current grid of cells
 	public String getGridText() {
 	String grid = "";
 	// first row - column header

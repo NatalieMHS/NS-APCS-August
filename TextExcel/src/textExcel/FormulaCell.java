@@ -2,6 +2,9 @@ package textExcel;
 
 import java.util.Arrays;
 
+// type of cell that holds a formula - 
+// combination of operations that include numbers and locations of cells with numbers
+
 public class FormulaCell extends RealCell {
 	
 	Cell[][] spreadsheet;
@@ -11,6 +14,8 @@ public class FormulaCell extends RealCell {
 		this.spreadsheet = spreadsheet;
 		
 	}
+	
+	// returns value displayed on the grid
 	public String abbreviatedCellText() {
 		if ((getDoubleValue() + "").length() < 10) {
 			return getDoubleValue() + pad(getDoubleValue() + "");
@@ -19,9 +24,12 @@ public class FormulaCell extends RealCell {
 		}
 	}
 	
+	// returns actual value
 	public String fullCellText() {
 		return getVal();
 	}
+	
+	// parses FormulaCell and returns the simplified result
 	public double getDoubleValue() {
 		String[] splitFormula = (getVal().substring(2, getVal().length() - 2)).split(" ");
 		if (splitFormula.length <= 1) {
@@ -48,7 +56,7 @@ public class FormulaCell extends RealCell {
 			return result;
 		}
 	}
-
+	// performs several basic arithmetic operators
 	public double doOperation(double num1, String operator, double num2) {
 		double result = 0;
 		if (operator.equals("+"))
@@ -61,7 +69,7 @@ public class FormulaCell extends RealCell {
 			result = ((double) num1) / num2;
 		return result;
 	}
-	
+	// returns the sum of a selected section of cells
 	public double sum(String startCell, String endCell) {
 		double sum = 0;
 		SpreadsheetLocation start = new SpreadsheetLocation(startCell);
@@ -74,7 +82,7 @@ public class FormulaCell extends RealCell {
 		}
 		return sum;
 	}
-	
+	// returns the average of a selected section of cells
 	public double avg(String startCell, String endCell) {
 		SpreadsheetLocation start = new SpreadsheetLocation(startCell);
 		SpreadsheetLocation end = new SpreadsheetLocation(endCell);
