@@ -2,6 +2,7 @@ package textExcel;
 
 import textExcel.TestsALL.Helper;
 
+// cell that holds text
 public class TextCell implements Cell {
 	private String text;
 	

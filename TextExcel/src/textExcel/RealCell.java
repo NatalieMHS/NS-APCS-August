@@ -1,5 +1,6 @@
 package textExcel;
 
+// cell that contains numbers and/or mathematical operations
 public abstract class RealCell implements Cell {
 	private String value;
 	
